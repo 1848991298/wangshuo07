@@ -1,0 +1,87 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.top{
+	margin-top: 0px;
+	height: 20.8px;
+	background: #ccc;
+}
+.voice{
+	position: fixed;
+	left: 300px;
+}
+.str{
+	position: fixed;
+	left: 316px;
+	width:950px;
+	height: 20.8px;
+	overflow: hidden;
+}
+#zhuyi{
+	position: absolute;
+	width: 420px;
+	right: -410px;
+	color: red;
+}
+ul,li{
+	list-style: none;
+	display: inline;
+	border-radius: 50%;
+	padding-left: 6px;
+	padding-right: 6px;   
+}
+.box{
+	width: 1200px;
+	height: 397px;
+	border: 1px solid white;
+	margin: 10px auto;
+	position: relative;
+	overflow: hidden;
+}
+.photos{
+	width: 8400px;
+	position: absolute;
+	left: -1200px;
+}
+.photo{
+	width: 1200px;
+	overflow:hidden;
+	float: left;
+}
+.box>span{
+	display: block;
+	width: 30px;
+	height: 50px;
+	text-align: center;
+	cursor: pointer;
+	top: 175px;
+	line-height: 50px;
+	background: rgb(255,0,0);
+	font-size: 30px;
+	position: absolute;
+	opacity: 0;
+}
+#left{
+	left:30px;
+}
+#right{
+	right:30px;
+}
+.nav{
+	position: absolute;
+	left: 500px;
+	bottom: 20px;
+}
+.nav>li{
+	float: = left;
+	width: 20px;
+	height: 20px;
+	background: #ccc;
+	cursor: pointer;
+	margin: 0 10px;
+	border-radius: 50%;
+}
+.nav .active{
+	background: red;
+}

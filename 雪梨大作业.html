@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+<body>
+	<div class="top">
+		<div class="voice"><img src="images/a15.png"></div>
+		<div class="str">
+			<div id ="zhuyi">[温馨提醒]最近有不少不法分子在网上骗人，请大家注意!!!</div>
+		</div>
+	</div>
+	<div class="box">
+		<div class="photos">
+			<div class="photo"><img src="images/b5.png"></div>
+			<div class="photo"><img src="images/b1.png"></div>
+			<div class="photo"><img src="images/b2.png"></div>
+			<div class="photo"><img src="images/b3.png"></div>
+			<div class="photo"><img src="images/b4.png"></div>
+			<div class="photo"><img src="images/b5.png"></div>
+			<div class="photo"><img src="images/b1.png"></div>
+		</div>
+		<span id="left"><</span>
+		<span id="right">></span>
+		<ul class="nav">
+			<li class="active">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+	<script type="text/javascript"  src="animate.js"></script>
+	<script type="text/javascript">
+		var box = document.getElementsByClassName('box')[0];
+		var actlist = document.getElementsByClassName('nav')[0].children;
+		var photos = document.getElementsByClassName('photos')[0];
+		var photo = document.getElementsByClassName('photo');
+		var left = document.getElementById('left');
+		var right = document.getElementById('right');
+		var zhuyi = document.getElementById('zhuyi');
+		var num = 1;
+		var timer;
+		var isMoving = false;
+		function getStyle(obj,style){
+	    	if(obj.currentStyle){//IE浏览器
+	    		return obj.currentStyle;
+	    	}
+	    	else{//火狐浏览器和谷歌浏览器
+	    		return getComputedStyle(obj)[style];
+	    	}
+	    }
+	    function topmove(){
+	    	var topfun =setInterval(function(){
+	    	var now =parseInt( getStyle(zhuyi,'right'));
+	    	zhuyi.style.right = now + 5 +'px';
+    		if (now == 940){
+    			clearInterval(topfun);
+    			zhuyi.style.right = "-500px";
+    			topmove();
+    			}
+	    	},60);
+	    }
+	    topmove();
+		 function next(){
+		 	if (isMoving) {
+		 		return;
+		 	}
+		 	isMoving =true;
+		 	num++; 
+		 	navchange();
+		 	animate(photos,{left:-1200*num},function(){
+		 		if (num==6) {
+		 			photos.style.left = "-1200px";
+		 			num = 1;
+		 		}
+		 		isMoving =false;
+		 	});
+		 }
+		  function prev(){
+		  	if (isMoving) {
+		 		return;
+		 	}
+		 	isMoving =true;
+		 	num--;
+		 	navchange();
+		 	animate(photos,{left:-1200*num},function(){
+		 		if (num== 0) {
+		 			photos.style.left = "-6000px";
+		 			num = 5;
+		 		}
+		 		isMoving =false;
+		 	});
+		 }
+		 var timer = setInterval(next,2000);
+		 //鼠标划入清定时器
+		 box.onmouseover = function(){
+		 	animate(left,{opacity:50});
+		 	animate(right,{opacity:50});
+		 	clearInterval(timer);
+		 }
+		 //鼠标划出开定时器
+		 box.onmouseout = function(){
+		 	animate(left,{opacity:0});
+		 	animate(right,{opacity:0});
+		 	timer = setInterval(next,2000);
+		 }
+		 right.onclick = next;
+		 left.onclick = prev;
+
+		 for (var i = 0; i < 5; i++) {
+		 	actlist[i].idx = i;
+		 	actlist[i].onclick = function(){
+		 		num = this.idx +1;
+		 		navchange();
+		 		animate(photos,{left:-1200*num});
+		 	}
+		 }
+		 function navchange(){
+		 	for (var i = 0; i < actlist.length; i++) {
+		 		actlist[i].className = '';
+		 	}
+		 	if (num == 6) {
+		 		actlist[0] . className = 'active';
+		 	}else if (num ==0){
+		 		actlist[4].className = 'active';
+		 	}else{
+		 		actlist[num-1].className = 'active';
+		 	}	 	
+		 }
+	</script>
+</body>
+</html>
